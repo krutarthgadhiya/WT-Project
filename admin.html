@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cultural Collage Fest - Admin Panel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f8f9fb;
+      color: #333;
+    }
+
+    header {
+      background-color: #1e293b;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #334155;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    section {
+      display: none;
+      padding: 30px;
+      height: 80vh;
+      overflow-y: auto;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #1e293b;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background: #1e40af;
+      color: white;
+    }
+
+    tr:hover {
+      background: #f1f5f9;
+    }
+
+    .add-btn {
+      margin-bottom: 15px;
+      background: #1e40af;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: #2563eb;
+    }
+
+    .form-container {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .form-container input, .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .form-container button {
+      padding: 10px;
+      background: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background: #1e293b;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Admin Dashboard - Cultural Collage Fest 2025</h1>
+    <p>Manage events, users, and entries efficiently</p>
+  </header>
+
+  <nav>
+    <a onclick="showSection('dashboard')">Dashboard</a>
+    <a onclick="showSection('manage-events')">Manage Events</a>
+    <a onclick="showSection('manage-users')">Registered Users</a>
+    <a onclick="showSection('messages')">Messages</a>
+    <a onclick="showSection('settings')">Settings</a>
+  </nav>
+
+  <section id="dashboard" class="active">
+    <h2>Overview</h2>
+    <p>Welcome, Admin! Here's a quick overview:</p>
+    <ul style="margin-top:20px; list-style-type:none;">
+      <li>Total Events: 7</li>
+      <li>Total Registrations: 250+</li>
+      <li>Pending Approvals: 12</li>
+    </ul>
+  </section>
+
+  <section id="manage-events">
+    <h2>Manage Events</h2>
+    <button class="add-btn" onclick="showAddEventForm()">+ Add Event</button>
+    <table>
+      <tr>
+        <th>Event Name</th>
+        <th>Date</th>
+        <th>Coordinator</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <td>Art Arena</td>
+        <td>12 Dec 2025</td>
+        <td>Riya</td>
+        <td><button>Edit</button> <button>Delete</button></td>
+      </tr>
+      <tr>
+        <td>Musical Night</td>
+        <td>14 Dec 2025</td>
+        <td>Arjun</td>
+        <td><button>Edit</button> <button>Delete</button></td>
+      </tr>
+      <tr>
+        <td>Dance-off</td>
+        <td>15 Dec 2025</td>
+        <td>Kavita</td>
+        <td><button>Edit</button> <button>Delete</button></td>
+      </tr>
+    </table>
+
+    <div class="form-container" id="addEventForm" style="display:none;">
+      <h3>Add New Event</h3>
+      <input type="text" placeholder="Event Name">
+      <input type="date">
+      <textarea placeholder="Description"></textarea>
+      <input type="text" placeholder="Coordinator Name">
+      <button>Add Event</button>
+    </div>
+  </section>
+
+  <section id="manage-users">
+    <h2>Registered Users</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Registered Events</th>
+      </tr>
+      <tr>
+        <td>Kavita Sharma</td>
+        <td>kavita123@gmail.com</td>
+        <td>Dance-off, Art Arena</td>
+      </tr>
+      <tr>
+        <td>Rahul Verma</td>
+        <td>rahulv98@gmail.com</td>
+        <td>Musical Night</td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="messages">
+    <h2>Contact Messages</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+      </tr>
+      <tr>
+        <td>Shreya Das</td>
+        <td>shreyadas@gmail.com</td>
+        <td>Interested in volunteering for the event.</td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="settings">
+    <h2>Account Settings</h2>
+    <div class="form-container">
+      <h3>Update Admin Info</h3>
+      <form id="adminForm" onsubmit="return validateAdminForm()">
+        <div id="errorMsg" class="error"></div>
+        <input type="text" id="adminName" placeholder="Admin Name">
+        <input type="email" id="adminEmail" placeholder="Email">
+        <input type="password" id="adminPassword" placeholder="New Password">
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Cultural Collage Fest | Admin Portal</p>
+  </footer>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(section => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+    }
+
+    function showAddEventForm() {
+      const form = document.getElementById('addEventForm');
+      form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function validateAdminForm() {
+      const name = document.getElementById("adminName").value.trim();
+      const email = document.getElementById("adminEmail").value.trim();
+      const password = document.getElementById("adminPassword").value.trim();
+      const errorDiv = document.getElementById("errorMsg");
+
+      errorDiv.textContent = "";
+
+      const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+      if (name === "") {
+        errorDiv.textContent = "Please enter your name.";
+        return false;
+      }
+
+      if (!email.match(emailPattern)) {
+        errorDiv.textContent = "Please enter a valid email address.";
+        return false;
+      }
+
+      if (password.length < 6) {
+        errorDiv.textContent = "Password must be at least 6 characters long.";
+        return false;
+      }
+
+      alert("Admin info updated successfully!");
+      return true;
+    }
+  </script>
+
+</body>
+</html>
